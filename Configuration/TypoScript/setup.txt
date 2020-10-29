@@ -33,3 +33,15 @@ plugin.tx_uploadexample._CSS_DEFAULT_STYLE (
 		vertical-align:top;
 	}
 )
+
+config.tx_extbase {
+	persistence  {
+		classes {
+			Helhum\UploadExample\Domain\Model\FileReference {
+				mapping {
+					tableName = sys_file_reference
+				}
+			}
+		}
+	}
+}

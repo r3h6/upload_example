@@ -172,7 +172,7 @@ class ExampleController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
 
         $uploadConfiguration = [
             UploadedFileReferenceConverter::CONFIGURATION_ALLOWED_FILE_EXTENSIONS => $GLOBALS['TYPO3_CONF_VARS']['GFX']['imagefile_ext'],
-            UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_FOLDER => '1:/content/',
+            UploadedFileReferenceConverter::CONFIGURATION_UPLOAD_FOLDER => '1:/user_upload/',
         ];
         /** @var PropertyMappingConfiguration $newExampleConfiguration */
         $newExampleConfiguration = $this->arguments[$argumentName]->getPropertyMappingConfiguration();
@@ -181,7 +181,7 @@ class ExampleController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionControll
                 UploadedFileReferenceConverter::class,
                 $uploadConfiguration
             );
-        $newExampleConfiguration->forProperty('imageCollection.0')
+        $newExampleConfiguration->forProperty('imageCollection.*')
             ->setTypeConverterOptions(
                 UploadedFileReferenceConverter::class,
                 $uploadConfiguration

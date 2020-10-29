@@ -46,7 +46,8 @@ class Example extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Image
      *
-     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference
+     * @var \TYPO3\CMS\Extbase\Domain\Model\FileReference|null
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $image;
 
@@ -54,6 +55,7 @@ class Example extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * Image
      *
      * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\TYPO3\CMS\Extbase\Domain\Model\FileReference>
+     * @TYPO3\CMS\Extbase\Annotation\ORM\Cascade("remove")
      */
     protected $imageCollection;
 
@@ -86,7 +88,7 @@ class Example extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the image
      *
-     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @return \TYPO3\CMS\Extbase\Domain\Model\FileReference|null $image
      */
     public function getImage()
     {
@@ -96,7 +98,7 @@ class Example extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the image
      *
-     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference $image
+     * @param \TYPO3\CMS\Extbase\Domain\Model\FileReference|null $image
      * @return void
      */
     public function setImage($image)

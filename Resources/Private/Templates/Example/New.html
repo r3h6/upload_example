@@ -20,7 +20,7 @@ Otherwise your changes will be overwritten the next time you save the extension 
 <f:render partial="FormErrors" arguments="{object:'newExample'}"/>
 
 <f:form action="create"  enctype="multipart/form-data"  name="newExample" object="{newExample}">
-	<f:render partial="Example/FormFields" />
+	<f:render partial="Example/FormFields" arguments="{example: newExample}" />
 	<f:form.submit value="Create new" />
 </f:form>
 </f:section>

@@ -118,11 +118,13 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
     public function convertFrom($source, $targetType, array $convertedChildProperties = [], PropertyMappingConfigurationInterface $configuration = null)
     {
         if (!isset($source['error']) || $source['error'] === \UPLOAD_ERR_NO_FILE) {
-            if (isset($source['submittedFile']['resourcePointer'])) {
+
+            $resourcePointer = $source['submittedFile']['resourcePointer'] ?? $source['__identity']['submittedFile']['resourcePointer'] ?? null;
+            if ($resourcePointer !== null) {
                 try {
-                    $resourcePointer = $this->hashService->validateAndStripHmac($source['submittedFile']['resourcePointer']);
+                    $resourcePointer = $this->hashService->validateAndStripHmac($resourcePointer);
                     if (strpos($resourcePointer, 'file:') === 0) {
-                        $fileUid = substr($resourcePointer, 5);
+                        $fileUid = (int) substr($resourcePointer, 5);
                         return $this->createFileReferenceFromFalFileObject($this->resourceFactory->getFileObject($fileUid));
                     } else {
                         return $this->createFileReferenceFromFalFileReferenceObject($this->resourceFactory->getFileReferenceObject($resourcePointer), $resourcePointer);
@@ -219,6 +221,7 @@ class UploadedFileReferenceConverter extends AbstractTypeConverter
                 'crop' => null,
             ]
         );
+
         return $this->createFileReferenceFromFalFileReferenceObject($fileReference, $resourcePointer);
     }
 

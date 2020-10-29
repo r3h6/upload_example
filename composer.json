@@ -1,0 +1,18 @@
+{
+    "name": "helhum/upload-example",
+    "type": "typo3-cms-extension",
+    "description": "Twint payment gateway for extension cart.",
+    "require": {
+        "typo3/cms-core": "^9.5 || ^10.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "Helhum\\UploadExample\\": "Classes"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Helhum\\UploadExample\\Tests\\": "Tests"
+        }
+    }
+}

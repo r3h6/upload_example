@@ -2,22 +2,45 @@
 <label for="title">
 	<f:translate key="tx_uploadexample_domain_model_example.title" /> <span class="required">(required)</span>
 </label><br />
-	<f:form.textfield property="title" /><br />
+<f:form.textfield property="title" /><br />
+
 <label for="image">
 	<f:translate key="tx_uploadexample_domain_model_example.image" />
 </label><br />
 
-	<h:form.upload property="image" >
-		<f:if condition="{resource}">
-			<f:image image="{resource}" alt="" width="50"/>
-		</f:if>
-	</h:form.upload><br />
+<h:form.upload property="image" value="{example.image}" >
+	<f:if condition="{resource}">
+		<f:image image="{resource}" alt="" width="50"/>
+	</f:if>
+</h:form.upload><br />
+
 <label for="image_collection">
 	<f:translate key="tx_uploadexample_domain_model_example.image_collection" />
 </label><br />
-	<h:form.upload property="imageCollection.0">
-		<f:if condition="{resource}">
-			<f:image image="{resource}" alt="" width="50"/>
-		</f:if>
-	</h:form.upload>
-	<br />
+
+<ul>
+	<f:variable name="key" value="0" />
+	<f:if condition="{example.imageCollection -> f:count()}">
+		<f:then>
+			<f:for each="{example.imageCollection}" as="image" iteration="i">
+				<li>
+					<h:form.upload property="imageCollection.{i.index}" value="{image}">
+						<f:if condition="{resource}">
+							<f:image image="{resource}" alt="" width="50"/>
+						</f:if>
+					</h:form.upload>
+				</li>
+				<f:variable name="key" value="{i.cycle}" />
+			</f:for>
+		</f:then>
+	</f:if>
+	<li>
+		<h:form.upload property="imageCollection.{key}">
+			<f:if condition="{resource}">
+				<f:image image="{resource}" alt="" width="50"/>
+			</f:if>
+		</h:form.upload>
+	</li>
+</ul>
+
+</div>>
